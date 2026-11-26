@@ -16,7 +16,7 @@ npm run build
 npm run preview   # http://localhost:4173
 ```
 
-Сайт собирается в `dist/` и публикуется на GitHub Pages из ветки `main` (вorkflow «Deploy to GitHub Pages»).
+Сайт собирается в `dist/` и публикуется на GitHub Pages из ветки `main` (workflow «Deploy to GitHub Pages»).
 
 ## Стек
 
