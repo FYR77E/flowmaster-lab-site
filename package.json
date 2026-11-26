@@ -1,0 +1,15 @@
+{
+  "name": "flowmaster-lab",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Личный сайт-визитка flowmaster-lab.com",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview --host --port 4173"
+  },
+  "devDependencies": {
+    "vite": "^6.3.5"
+  }
+}
