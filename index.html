@@ -6,20 +6,20 @@
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#F6F1E6" media="(prefers-color-scheme: light)">
   <meta name="theme-color" content="#161410" media="(prefers-color-scheme: dark)">
-  <title>Flowmaster Lab — собираю системы, которые работают сами</title>
-  <meta name="description" content="Фрэнки, Flowmaster Lab. Личная лаборатория: SmartPlayer, команда ИИ-агентов и автоматизация. Тексты на сайте пока примерные.">
+  <title>Михаил Бровкин — Product Engineer</title>
+  <meta name="description" content="Михаил Бровкин, Product Engineer. B2B-продукты и Digital Signage, Москва. Прототипы, виджеты и документация для SmartPlayer.">
   <link rel="canonical" href="https://fyr77e.github.io/flowmaster-lab-site/">
   <meta property="og:locale" content="ru_RU">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Flowmaster Lab">
-  <meta property="og:description" content="Собираю системы, которые работают сами. Лаборатория Фрэнки: SmartPlayer, агенты, автоматизация.">
+  <meta property="og:title" content="Михаил Бровкин — Product Engineer">
+  <meta property="og:description" content="Product Engineer · B2B и Digital Signage · Москва">
   <meta property="og:url" content="https://fyr77e.github.io/flowmaster-lab-site/">
   <meta property="og:image" content="https://fyr77e.github.io/flowmaster-lab-site/og.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Flowmaster Lab">
-  <meta name="twitter:description" content="Собираю системы, которые работают сами.">
+  <meta name="twitter:title" content="Михаил Бровкин — Product Engineer">
+  <meta name="twitter:description" content="Product Engineer · B2B и Digital Signage · Москва">
   <meta name="twitter:image" content="https://fyr77e.github.io/flowmaster-lab-site/og.png">
   <link rel="icon" href="/flowmaster-lab-site/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="/flowmaster-lab-site/favicon-32.png" type="image/png" sizes="32x32">
@@ -33,6 +33,10 @@
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       document.documentElement.classList.add("rm");
     }
+    try {
+      var lang = localStorage.getItem("fm-lang");
+      if (lang === "en" || lang === "ru") document.documentElement.lang = lang;
+    } catch (e) {}
   </script>
   <style>
     @font-face{font-family:Unbounded;src:url("/flowmaster-lab-site/fonts/unbounded.woff2") format("woff2");font-weight:500 800;font-style:normal;font-display:swap}
@@ -44,166 +48,368 @@
   <link rel="stylesheet" href="./src/styles/main.css">
 </head>
 <body>
-  <a class="skip" href="#main">К содержанию</a>
+  <a class="skip t-ru" href="#main">К содержанию</a>
+  <a class="skip t-en" href="#main">Skip to content</a>
 
   <header class="site-header" id="header">
     <a class="logo" href="#top">flowmaster-lab</a>
     <nav class="nav" aria-label="Разделы сайта">
-      <a href="#projects">Проекты</a>
-      <a href="#team">Команда</a>
-      <a href="#contact">Контакты</a>
+      <a href="#projects" class="t-ru">Проекты</a>
+      <a href="#projects" class="t-en">Work</a>
+      <a href="#approach" class="t-ru">Как работаю</a>
+      <a href="#approach" class="t-en">Approach</a>
+      <a href="#experience" class="t-ru">Опыт</a>
+      <a href="#experience" class="t-en">Experience</a>
+      <a href="#contact" class="t-ru">Контакты</a>
+      <a href="#contact" class="t-en">Contact</a>
     </nav>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" class="lang-btn" data-lang="ru" aria-pressed="true">RU</button>
+      <button type="button" class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+    </div>
   </header>
 
   <main id="main">
-    <section class="hero" id="top" aria-labelledby="manifesto">
+    <section class="hero" id="top" aria-labelledby="fullname">
       <div class="hero-top">
-        <p class="kicker"><span>прямой эфир · редактура</span><span class="badge">примерный текст</span></p>
-        <ul class="crew" aria-label="Кто сейчас в эфире">
-          <li class="chip" data-chip="writer">Технический писатель</li>
-          <li class="chip" data-chip="zalim">Залим · продакт</li>
-          <li class="chip chip-cut" data-chip="cut">Монтажёр</li>
+        <p class="kicker"><span class="t-ru">прямой эфир</span><span class="t-en">live</span></p>
+        <ul class="crew" aria-label="Этапы работы">
+          <li class="chip" data-chip="req"><span class="t-ru">Требования</span><span class="t-en">Requirements</span></li>
+          <li class="chip" data-chip="proto"><span class="t-ru">Прототип</span><span class="t-en">Prototype</span></li>
+          <li class="chip" data-chip="review"><span class="t-ru">Ревью</span><span class="t-en">Review</span></li>
+          <li class="chip chip-cut" data-chip="pilot"><span class="t-ru">Пилот</span><span class="t-en">Pilot</span></li>
         </ul>
       </div>
       <div class="sheet">
-        <p class="margin" id="edit-note" aria-live="polite"><em>Монтажёр:</em> снято. Осталась одна фраза.</p>
-        <p class="draft" id="draft" hidden></p>
-        <h1 class="final" id="manifesto">
-          <span class="line">Собираю</span>
-          <span class="line">системы,</span>
-          <span class="line">которые</span>
-          <span class="line">работают</span>
-          <span class="line">сами.</span>
+        <p class="margin" id="edit-note" aria-live="polite"></p>
+        <h1 class="final" id="fullname">
+          <span class="line t-ru">Михаил</span>
+          <span class="line t-ru">Бровкин</span>
+          <span class="line t-en">Mikhail</span>
+          <span class="line t-en">Brovkin</span>
         </h1>
-        <p class="sign" id="sign">Фрэнки · Flowmaster · принято в набор</p>
+        <p class="role t-ru" id="role">Product Engineer · B2B и Digital Signage · Москва</p>
+        <p class="role t-en">Product Engineer · B2B and Digital Signage · Moscow</p>
+        <p class="lead t-ru">Выясняю, какую бизнес-задачу решает клиент, собираю прототип с помощью ИИ, проверяю сценарии и передаю разработке требования, по которым можно строить. С 2019 года в проектах и процессах, последние два — в Digital Signage и CMS.</p>
+        <p class="lead t-en">I find the business problem behind a client request, build a prototype with AI tools, test the scenarios and hand engineering requirements they can build from. In projects and operations since 2019, the last two years in Digital Signage and CMS.</p>
       </div>
+      <ul class="metrics" aria-label="Цифры">
+        <li><strong>3 ч → 1 ч</strong><span class="t-ru">среднее время решения клиентских обращений после изменения процесса</span><span class="t-en">average resolution time for client requests after a process change</span></li>
+        <li><strong>20+</strong><span class="t-ru">виджетов и прототипов для библиотеки и 4 решения под клиентов</span><span class="t-en">widgets and prototypes for the library, plus 4 custom client solutions</span></li>
+        <li><strong>110+</strong><span class="t-ru">обучений и онбордингов для клиентов, партнёров и сотрудников</span><span class="t-en">trainings and onboardings for clients, partners and staff</span></li>
+        <li><strong>4 000+</strong><span class="t-ru">устройств и рекламных мест в сопровождаемых клиентских сетях</span><span class="t-en">devices and ad slots in the client networks I supported</span></li>
+      </ul>
       <div class="hero-bar">
-        <p>черновик → суть → склейка</p>
-        <button type="button" class="btn" id="hero-replay">Смотреть ещё раз</button>
-      </div>
-    </section>
-
-    <section class="method" aria-labelledby="method-title">
-      <div class="wrap">
-        <h2 id="method-title">Метод, а не декор</h2>
-        <p>Команда режет воду так же, как этот сайт: сначала черновик, потом одна фраза, которую не стыдно поставить крупно. <span class="ph">примерный текст</span></p>
+        <a class="btn" href="https://t.me/FLOWMA">Telegram · @FLOWMA</a>
+        <button type="button" class="btn" id="hero-replay"><span class="t-ru">Смотреть ещё раз</span><span class="t-en">Play again</span></button>
       </div>
     </section>
 
     <section class="projects" id="projects" aria-labelledby="projects-title">
       <div class="wrap">
-        <p class="kicker kicker-light">клипы · проекты</p>
-        <h2 id="projects-title">Работы как склейки</h2>
-        <p class="lede">Каждый проект — клип с таймкодом, а не карточка. Play запускает рассказ. <span class="ph">примерный текст, заглушки</span></p>
+        <p class="kicker kicker-light"><span class="t-ru">клипы · проекты</span><span class="t-en">clips · work</span></p>
+        <h2 id="projects-title"><span class="t-ru">Проекты</span><span class="t-en">Selected work</span></h2>
+        <p class="lede t-ru">Каждый проект — как клип на дорожке: задача, что сделал я, чем закончилось. SmartPlayer, Кубик Медиа и один концепт.</p>
+        <p class="lede t-en">Each project is a clip on a track: the problem, what I did, how it ended. SmartPlayer, Cubic Media and one concept.</p>
 
         <div class="clips">
-          <article class="clip" data-clip="smartplayer">
+
+          <article class="clip" data-clip="wayfinding">
             <div class="screen">
-              <p class="frame">клип 01 · smartplayer</p>
-              <h3 class="clip-title" data-title="true">SmartPlayer</h3>
-              <p class="clip-dek">Плеер, который сам собирает сцену и не бросает зрителя на полуслове. <span class="ph">примерный текст</span></p>
+              <p class="frame t-ru">клип 01 · SmartPlayer · навигация</p>
+              <p class="frame t-en">clip 01 · SmartPlayer · wayfinding</p>
+              <h3 class="clip-title t-ru">Навигация для Дома правительства</h3>
+              <h3 class="clip-title t-en">Wayfinding for a government building</h3>
+              <dl class="steps">
+                <div><dt class="t-ru">Задача</dt><dt class="t-en">Problem</dt><dd class="t-ru">Сдать в срок навигацию по зданию на экранах.</dd><dd class="t-en">Deliver on-screen wayfinding for the building on schedule.</dd></div>
+                <div><dt class="t-ru">Что сделал</dt><dt class="t-en">What I did</dt><dd class="t-ru">Вместе с разработкой доработал навигационный виджет: взял на себя отрисовку маршрутов и точек назначения на карте и настройку навигации.</dd><dd class="t-en">Worked with engineering on the wayfinding widget and took over drawing routes and destinations on the map and configuring the navigation.</dd></div>
+                <div><dt class="t-ru">Результат</dt><dt class="t-en">Outcome</dt><dd class="t-ru">Проект сдан в срок.</dd><dd class="t-en">The project was delivered on time.</dd></div>
+              </dl>
             </div>
             <div class="transport">
-              <button type="button" class="play" aria-label="Воспроизвести клип SmartPlayer">▶</button>
+              <button type="button" class="play" aria-label="Воспроизвести клип: навигация">▶</button>
               <span class="time"><span class="tc">00:00:00</span> / 00:00:06</span>
               <div class="ruler" aria-hidden="true"><i class="playhead"></i></div>
             </div>
             <div class="tracks" aria-hidden="true">
-              <div class="tr"><span>V1 агенты</span><div class="lane"><i class="seg seg-a"></i></div></div>
-              <div class="tr"><span>V2 плеер</span><div class="lane"><i class="seg seg-b"></i></div></div>
+              <div class="tr"><span>V1 map</span><div class="lane"><i class="seg seg-a"></i></div></div>
+              <div class="tr"><span>V2 nav</span><div class="lane"><i class="seg seg-b"></i></div></div>
+            </div>
+          </article>
+
+          <article class="clip" data-clip="widgets">
+            <div class="screen">
+              <p class="frame t-ru">клип 02 · SmartPlayer · виджеты</p>
+              <p class="frame t-en">clip 02 · SmartPlayer · widgets</p>
+              <h3 class="clip-title t-ru">Библиотека виджетов и решения под клиентов</h3>
+              <h3 class="clip-title t-en">Widget library and custom client solutions</h3>
+              <dl class="steps">
+                <div><dt class="t-ru">Задача</dt><dt class="t-en">Problem</dt><dd class="t-ru">Клиентам нужны функции, которых нет в стандартном наборе CMS.</dd><dd class="t-en">Clients need features the standard CMS does not have.</dd></div>
+                <div><dt class="t-ru">Что сделал</dt><dt class="t-en">What I did</dt><dd class="t-ru">20+ виджетов и прототипов, собранных с ИИ. Внешние API для свежих данных; в конструкторе меню цены обновляются из Google Sheets или CSV без пересохранения виджета. Проверенный MVP передаю команде на полную реализацию.</dd><dd class="t-en">20+ widgets and prototypes built with AI tools. External APIs keep data fresh; in the menu builder prices update from Google Sheets or CSV without re-saving the widget. I hand the tested MVP to the team for full implementation.</dd></div>
+                <div><dt class="t-ru">Результат</dt><dt class="t-en">Outcome</dt><dd class="t-ru">4 персональных решения помогли заключить договоры; виджеты показывали на выставке в Индии.</dd><dd class="t-en">4 custom solutions helped close contracts; the widgets were shown at an exhibition in India.</dd></div>
+              </dl>
+            </div>
+            <div class="transport">
+              <button type="button" class="play" aria-label="Воспроизвести клип: виджеты">▶</button>
+              <span class="time"><span class="tc">00:00:00</span> / 00:00:06</span>
+              <div class="ruler" aria-hidden="true"><i class="playhead"></i></div>
+            </div>
+            <div class="tracks" aria-hidden="true">
+              <div class="tr"><span>V1 lib</span><div class="lane"><i class="seg seg-a"></i></div></div>
+              <div class="tr"><span>V2 mvp</span><div class="lane"><i class="seg seg-b"></i></div></div>
+            </div>
+          </article>
+
+          <article class="clip" data-clip="docs">
+            <div class="screen">
+              <p class="frame t-ru">клип 03 · SmartPlayer · документация</p>
+              <p class="frame t-en">clip 03 · SmartPlayer · documentation</p>
+              <h3 class="clip-title t-ru">Портал документации и обучение</h3>
+              <h3 class="clip-title t-en">Documentation portal and training</h3>
+              <p class="clip-link"><a href="https://smartplayer-portal-v5.vercel.app" rel="noopener noreferrer"><span class="t-ru">Открыть портал →</span><span class="t-en">Open the portal →</span></a></p>
+              <dl class="steps">
+                <div><dt class="t-ru">Задача</dt><dt class="t-en">Problem</dt><dd class="t-ru">Сотрудникам и клиентам нужно одно понятное место с инструкциями.</dd><dd class="t-en">Staff and clients need one clear place for instructions.</dd></div>
+                <div><dt class="t-ru">Что сделал</dt><dt class="t-en">What I did</dt><dd class="t-ru">Собрал портал на Docusaurus с GitHub и Vercel: руководство пользователя, быстрый старт, интерактивное обучение. Подготовил онбординг-материалы.</dd><dd class="t-en">Built a Docusaurus portal on GitHub and Vercel: a user guide, a quick start and interactive training. Prepared onboarding materials.</dd></div>
+                <div><dt class="t-ru">Результат</dt><dt class="t-en">Outcome</dt><dd class="t-ru">Порталом пользуются сотрудники и клиенты; 70+ проведённых обучений.</dd><dd class="t-en">Used by staff and clients; 70+ training sessions delivered.</dd></div>
+              </dl>
+            </div>
+            <div class="transport">
+              <button type="button" class="play" aria-label="Воспроизвести клип: портал документации">▶</button>
+              <span class="time"><span class="tc">00:00:00</span> / 00:00:06</span>
+              <div class="ruler" aria-hidden="true"><i class="playhead"></i></div>
+            </div>
+            <div class="tracks" aria-hidden="true">
+              <div class="tr"><span>V1 docs</span><div class="lane"><i class="seg seg-a"></i></div></div>
+              <div class="tr"><span>V2 train</span><div class="lane"><i class="seg seg-c"></i></div></div>
+            </div>
+          </article>
+
+          <article class="clip" data-clip="matrix">
+            <div class="screen">
+              <p class="frame">клип 04 · SmartPlayer · presale</p>
+              <h3 class="clip-title">Compatibility Matrix</h3>
+              <dl class="steps">
+                <div><dt class="t-ru">Задача</dt><dt class="t-en">Problem</dt><dd class="t-ru">На демонстрации быстро и точно отвечать, что работает на какой платформе.</dd><dd class="t-en">Answer quickly and precisely in a demo what works on which platform.</dd></div>
+                <div><dt class="t-ru">Что сделал</dt><dt class="t-en">What I did</dt><dd class="t-ru">Интерактивная матрица: 8 платформ и 120+ функций CMS. Рядом — сравнение с конкурентами по функциям, интеграциям и лицензированию и концепции доработок библиотеки виджетов.</dd><dd class="t-en">An interactive matrix: 8 platforms and 120+ CMS features. Alongside it, a comparison with competitors on features, integrations and licensing, and proposals to extend the widget library.</dd></div>
+                <div><dt class="t-ru">Результат</dt><dt class="t-en">Outcome</dt><dd class="t-ru">Клиентскую версию используют на демонстрациях и при обсуждении пилотов; концепции включили в спринт разработки.</dd><dd class="t-en">The client version is used in demos and pilot talks; the proposals went into a development sprint.</dd></div>
+              </dl>
+            </div>
+            <div class="transport">
+              <button type="button" class="play" aria-label="Воспроизвести клип: Compatibility Matrix">▶</button>
+              <span class="time"><span class="tc">00:00:00</span> / 00:00:06</span>
+              <div class="ruler" aria-hidden="true"><i class="playhead"></i></div>
+            </div>
+            <div class="tracks" aria-hidden="true">
+              <div class="tr"><span>V1 matrix</span><div class="lane"><i class="seg seg-a"></i></div></div>
+              <div class="tr"><span>V2 compare</span><div class="lane"><i class="seg seg-b"></i></div></div>
+            </div>
+          </article>
+
+          <article class="clip" data-clip="beautyscan">
+            <div class="screen">
+              <p class="frame t-ru">клип 05 · Кубик Медиа · координация</p>
+              <p class="frame t-en">clip 05 · Cubic Media · coordination</p>
+              <h3 class="clip-title t-ru">BeautyScan для «Магнита»</h3>
+              <h3 class="clip-title t-en">BeautyScan for Magnit</h3>
+              <dl class="steps">
+                <div><dt class="t-ru">Задача</dt><dt class="t-en">Problem</dt><dd class="t-ru">Связать веб-решение, дисплеи в магазинах и ИИ-сценарий в один проект.</dd><dd class="t-en">Bring a web app, in-store displays and an AI scenario together in one project.</dd></div>
+                <div><dt class="t-ru">Что сделал</dt><dt class="t-en">What I did</dt><dd class="t-ru">Вёл задачи и координировал команду из 7 человек.</dd><dd class="t-en">Owned the task plan and coordinated a team of 7.</dd></div>
+                <div><dt class="t-ru">Результат</dt><dt class="t-en">Outcome</dt><dd class="t-ru">Проект сдан в срок и принят клиентом.</dd><dd class="t-en">Delivered on time and accepted by the client.</dd></div>
+              </dl>
+            </div>
+            <div class="transport">
+              <button type="button" class="play" aria-label="Воспроизвести клип: BeautyScan">▶</button>
+              <span class="time"><span class="tc">00:00:00</span> / 00:00:06</span>
+              <div class="ruler" aria-hidden="true"><i class="playhead"></i></div>
+            </div>
+            <div class="tracks" aria-hidden="true">
+              <div class="tr"><span>V1 web</span><div class="lane"><i class="seg seg-a"></i></div></div>
+              <div class="tr"><span>V2 store</span><div class="lane"><i class="seg seg-c"></i></div></div>
             </div>
           </article>
 
           <article class="clip" data-clip="agents">
             <div class="screen">
-              <p class="frame">клип 02 · агенты</p>
-              <h3 class="clip-title" data-title="true">Команда ИИ-агентов</h3>
-              <p class="clip-dek">Писатель, продакт и монтажёр работают как одна смена. Я держу поток. <span class="ph">примерный текст</span></p>
+              <p class="frame t-ru">клип 06 · концепт</p>
+              <p class="frame t-en">clip 06 · concept</p>
+              <h3 class="clip-title t-ru">Вход для ИИ-агентов в систему Digital Signage</h3>
+              <h3 class="clip-title t-en">An AI-agent entry point for a Digital Signage system</h3>
+              <dl class="steps">
+                <div><dt class="t-ru">Задача</dt><dt class="t-en">Problem</dt><dd class="t-ru">Дать ИИ-агенту работать с сетью экранов так, чтобы он ничего не сломал.</dd><dd class="t-en">Let an AI agent work with a screen network without breaking anything.</dd></div>
+                <div><dt class="t-ru">Что сделал</dt><dt class="t-en">What I did</dt><dd class="t-ru">Права открываются ступенями: документация → чтение состояния сети → изменения, которые подтверждает человек. Набор инструментов MCP разложен по уровню риска.</dd><dd class="t-en">Permissions open in stages: docs → reading network state → changes a human confirms. The MCP tool set is ranked by risk.</dd></div>
+                <div><dt class="t-ru">Результат</dt><dt class="t-en">Outcome</dt><dd class="t-ru">Концепт с тремя сценариями: утренняя сводка по сети, кампания по расписанию, ответ клиенту поддержки.</dd><dd class="t-en">A concept with three scenarios: a morning network report, a scheduled campaign, a support answer.</dd></div>
+              </dl>
             </div>
             <div class="transport">
-              <button type="button" class="play" aria-label="Воспроизвести клип про команду агентов">▶</button>
+              <button type="button" class="play" aria-label="Воспроизвести клип: вход для ИИ-агентов">▶</button>
               <span class="time"><span class="tc">00:00:00</span> / 00:00:06</span>
               <div class="ruler" aria-hidden="true"><i class="playhead"></i></div>
             </div>
             <div class="tracks" aria-hidden="true">
-              <div class="tr"><span>V1 текст</span><div class="lane"><i class="seg seg-a"></i></div></div>
-              <div class="tr"><span>V2 продукт</span><div class="lane"><i class="seg seg-b"></i></div></div>
-              <div class="tr"><span>A1 монтаж</span><div class="lane"><i class="seg seg-c"></i></div></div>
+              <div class="tr"><span>V1 access</span><div class="lane"><i class="seg seg-a"></i></div></div>
+              <div class="tr"><span>V2 review</span><div class="lane"><i class="seg seg-b"></i></div></div>
             </div>
           </article>
 
-          <article class="clip" data-clip="auto">
-            <div class="screen">
-              <p class="frame">клип 03 · контуры</p>
-              <h3 class="clip-title" data-title="true">Автоматизация</h3>
-              <p class="clip-dek">Контуры, которые не разваливаются, когда отходишь от монитора. <span class="ph">примерный текст</span></p>
-            </div>
-            <div class="transport">
-              <button type="button" class="play" aria-label="Воспроизвести клип про автоматизацию">▶</button>
-              <span class="time"><span class="tc">00:00:00</span> / 00:00:06</span>
-              <div class="ruler" aria-hidden="true"><i class="playhead"></i></div>
-            </div>
-            <div class="tracks" aria-hidden="true">
-              <div class="tr"><span>V1 поток</span><div class="lane"><i class="seg seg-c"></i></div></div>
-              <div class="tr"><span>A1 ритм</span><div class="lane"><i class="seg seg-a"></i></div></div>
-            </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="team" id="approach" aria-labelledby="approach-title">
+      <div class="wrap">
+        <p class="kicker kicker-room"><span class="t-ru">процесс · как работаю</span><span class="t-en">process · approach</span></p>
+        <h2 id="approach-title"><span class="t-ru">Как работаю</span><span class="t-en">How I work</span></h2>
+        <p class="lede lede-room t-ru">ИИ — рабочий инструмент, а не замена проверке. Для своих задач собрал систему из нескольких ИИ-агентов с правилами, разделением ролей и обязательным ревью.</p>
+        <p class="lede lede-room t-en">AI is a working tool, not a substitute for checking. For my own work I built a system of several AI agents with shared rules, separate roles and mandatory review.</p>
+
+        <div class="desks" id="desks">
+          <article class="desk" data-desk="req">
+            <p class="channel t-ru">этап 01</p>
+            <p class="channel t-en">stage 01</p>
+            <h3 class="t-ru">От требования к MVP</h3>
+            <h3 class="t-en">From requirement to MVP</h3>
+            <p class="copy t-ru">Собираю требования, оцениваю реализуемость, пишу user stories и критерии приёмки, с Product Owner уточняю MVP и приоритеты.</p>
+            <p class="copy t-en">I gather requirements, assess feasibility, write user stories and acceptance criteria, and agree MVP scope and priorities with the Product Owner.</p>
+          </article>
+          <article class="desk" data-desk="review">
+            <p class="channel t-ru">этап 02</p>
+            <p class="channel t-en">stage 02</p>
+            <h3 class="t-ru">Один делает — другой проверяет</h3>
+            <h3 class="t-en">One builds, another reviews</h3>
+            <p class="copy t-ru">Изменения агентов идут через pull request и проверку агентом другой модели с вердиктом PASS, CONDITIONAL или REJECT; решения и их проверка записываются в журнал.</p>
+            <p class="copy t-en">Agent changes go through pull requests reviewed by an agent on a different model, with a PASS, CONDITIONAL or REJECT verdict; decisions and their checks are logged.</p>
+          </article>
+          <article class="desk" data-desk="pilot">
+            <p class="channel t-ru">этап 03</p>
+            <p class="channel t-en">stage 03</p>
+            <h3 class="t-ru">Пилот и запуск</h3>
+            <h3 class="t-en">Pilot and rollout</h3>
+            <p class="copy t-ru">Настраиваю тестовые стенды, проверяю оборудование, сопровождаю пилоты, веду статусы и риски, готовлю чек-листы тестирования и планы развёртывания.</p>
+            <p class="copy t-en">I set up test environments, check the hardware, run pilots, track status and risks, and prepare test checklists and rollout plans.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="team" id="team" aria-labelledby="team-title">
+    <section class="experience" id="experience" aria-labelledby="exp-title">
       <div class="wrap">
-        <p class="kicker kicker-room">пульт · команда</p>
-        <h2 id="team-title">Фрэнки держит поток</h2>
-        <p class="lede lede-room">Не пишет, не монтирует и не ведёт продукт в одиночку — ставит задачу и смотрит, как она сходится. <span class="ph">примерный текст</span></p>
+        <p class="kicker"><span class="t-ru">опыт · с 2019</span><span class="t-en">experience · since 2019</span></p>
+        <h2 id="exp-title"><span class="t-ru">Опыт</span><span class="t-en">Experience</span></h2>
+        <p class="lede t-ru">Все места работы с 2019 года — от последнего к первому.</p>
+        <p class="lede t-en">Every role since 2019, most recent first.</p>
 
-        <div class="desks" id="desks">
-          <article class="desk" data-desk="writer">
-            <p class="channel">канал 01</p>
-            <h3>Технический писатель</h3>
-            <p class="copy" data-copy>SmartPlayer — плеер, который сам собирает сцену и не бросает зрителя на полуслове.</p>
-          </article>
-          <article class="desk" data-desk="zalim">
-            <p class="channel">канал 02</p>
-            <h3>Залим · продакт</h3>
-            <div class="ticket is-done">
-              <p class="col-name">готово</p>
-              <p class="ticket-name">SmartPlayer</p>
-              <p class="ticket-status">принято · смысл оставлен</p>
-            </div>
-          </article>
-          <article class="desk" data-desk="cut">
-            <p class="channel">канал 03</p>
-            <h3>Монтажёр</h3>
-            <div class="film" aria-hidden="true"><i class="clip-bar is-cut"></i><i class="head"></i></div>
-            <p class="tc-line">in 00:04 &nbsp; out <em>00:09</em> &nbsp; снято</p>
-          </article>
-        </div>
-        <div class="team-bar">
-          <p>бриф: сцена про SmartPlayer <span class="ph">примерный текст</span></p>
-          <button type="button" class="btn btn-on-dark" id="team-replay">Ещё раз</button>
+        <ol class="jobs">
+          <li class="job">
+            <p class="job-dates t-ru">Ноябрь 2026 — сейчас</p>
+            <p class="job-dates t-en">Nov 2026 — present</p>
+            <h3>SmartPlayer <span>· Product Engineer</span></h3>
+            <p class="t-ru">Из пресейла перешёл в продуктовое направление и работаю в связке с продакт-менеджером.</p>
+            <p class="t-en">Moved from presales to the product track, working alongside the product manager.</p>
+            <p class="t-ru"><strong>Прототипы.</strong> С помощью ИИ собираю прототипы виджетов, модулей и решений под запросы клиентов, чтобы проверить идею до разработки.</p>
+            <p class="t-en"><strong>Prototypes.</strong> I build AI-assisted prototypes of widgets, modules and client solutions to test an idea before engineering commits to it.</p>
+            <p class="t-ru"><strong>Запросы клиентов.</strong> Выясняю бизнес-задачу, проверяю, решается ли она текущим функционалом, и если нет — готовлю прототип и требования для разработки.</p>
+            <p class="t-en"><strong>Client requests.</strong> I find the business problem behind a request, check whether the current product already solves it, and if not, prepare a prototype and requirements for engineering.</p>
+            <p class="t-ru"><strong>Документация.</strong> Описываю новые функции и виджеты с помощью ИИ к их выходу.</p>
+            <p class="t-en"><strong>Documentation.</strong> I write AI-assisted documentation for new features and widgets in time for release.</p>
+            <p class="t-ru"><strong>Развитие продукта.</strong> Разбираю библиотеку виджетов по задачам клиентов, готовлю общие требования к виджетам и исследование навигации.</p>
+            <p class="t-en"><strong>Product direction.</strong> I review the widget library by client needs and draft common widget requirements and wayfinding research.</p>
+          </li>
+          <li class="job">
+            <p class="job-dates t-ru">Ноябрь 2025 — ноябрь 2026</p>
+            <p class="job-dates t-en">Nov 2025 — Nov 2026</p>
+            <h3>SmartPlayer <span>· Presale Engineer / Project Coordinator</span></h3>
+            <p class="t-ru"><strong>Требования.</strong> Собирал требования, оценивал реализуемость, писал user stories и критерии приёмки; с Product Owner уточнял MVP и приоритеты.</p>
+            <p class="t-en"><strong>Requirements.</strong> Gathered requirements, assessed feasibility, wrote user stories and acceptance criteria; agreed MVP scope and priorities with the Product Owner.</p>
+            <p class="t-ru"><strong>Пилоты.</strong> Настраивал тестовые стенды, проверял оборудование, сопровождал пилоты, вёл статусы и риски, готовил чек-листы тестирования и планы развёртывания.</p>
+            <p class="t-en"><strong>Pilots.</strong> Set up test environments, checked hardware, ran pilots, tracked status and risks, prepared test checklists and rollout plans.</p>
+            <p class="t-ru"><strong>Виджеты.</strong> 20+ виджетов и прототипов для бесплатной библиотеки и 4 персональных решения для клиентов, которые помогли заключить договоры. Виджеты для выставки в Индии.</p>
+            <p class="t-en"><strong>Widgets.</strong> 20+ widgets and prototypes for the free library and 4 custom client solutions that helped close contracts. Widgets for an exhibition in India.</p>
+            <p class="t-ru"><strong>Анализ продукта.</strong> Compatibility Matrix: 8 платформ и 120+ функций CMS. Сравнение с двумя конкурентами по функциям, интеграциям и лицензированию; концепции доработок библиотеки виджетов вошли в спринт разработки.</p>
+            <p class="t-en"><strong>Product analysis.</strong> Compatibility Matrix: 8 platforms and 120+ CMS features. A comparison with two competitors on features, integrations and licensing; proposals for the widget library went into a development sprint.</p>
+            <p class="t-ru"><strong>Прототип личного кабинета.</strong> Кликабельный прототип с переработанной навигацией и сценариями работы с контентом и устройствами: создание трансляции — в четыре шага. Цель — быстрее находить функции и реже обращаться в поддержку.</p>
+            <p class="t-en"><strong>Customer dashboard prototype.</strong> A clickable prototype with reworked navigation and content and device flows: creating a broadcast takes four steps. The goal: find features faster and contact support less often.</p>
+            <p class="t-ru"><strong>Документация и качество.</strong> Портал на Docusaurus, GitHub и Vercel, 70+ обучений; 15+ баг-репортов по CMS с шагами воспроизведения и ожидаемым поведением.</p>
+            <p class="t-en"><strong>Docs and quality.</strong> A Docusaurus portal on GitHub and Vercel, 70+ training sessions; 15+ CMS bug reports with repro steps and expected behaviour.</p>
+          </li>
+          <li class="job">
+            <p class="job-dates t-ru">Октябрь 2024 — август 2025</p>
+            <p class="job-dates t-en">Oct 2024 — Aug 2025</p>
+            <h3 class="t-ru">Кубик Медиа <span>· Контент-менеджер Digital Signage / Project Coordinator</span></h3>
+            <h3 class="t-en">Cubic Media <span>· Digital Signage Content Manager / Project Coordinator</span></h3>
+            <p class="t-ru"><strong>BeautyScan для «Магнита».</strong> Задачи и координация команды из 7 человек; веб-решение, дисплеи и ИИ-сценарий. Сдан в срок и принят клиентом.</p>
+            <p class="t-en"><strong>BeautyScan for Magnit.</strong> Task plan and coordination of a team of 7; a web app, displays and an AI scenario. Delivered on time and accepted by the client.</p>
+            <p class="t-ru"><strong>Поддержка и процесс.</strong> 850+ обращений в OKdesk и YouTrack. Участвовал в изменении процесса обработки: среднее время решения сократилось с 3 часов до 1 часа. С руководителем техподдержки анализировал статистику служб и прорабатывал улучшения.</p>
+            <p class="t-en"><strong>Support and process.</strong> 850+ requests in OKdesk and YouTrack. Took part in changing the handling process: average resolution time fell from 3 hours to 1. Analysed team statistics with the head of support and worked out improvements.</p>
+            <p class="t-ru"><strong>Голос клиента.</strong> Собирал обратную связь клиентов и операторов, предлагал новые функции и UX/UI-доработки CMS, переводил запросы в задачи; 50+ баг-репортов, согласованных с разработкой, дизайном и поддержкой.</p>
+            <p class="t-en"><strong>Voice of the customer.</strong> Collected feedback from clients and operators, proposed new features and UX/UI improvements to the CMS, turned requests into tasks; 50+ bug reports agreed with engineering, design and support.</p>
+            <p class="t-ru"><strong>Шаблоны.</strong> 30+ шаблонов и интерактивных сценариев: менюборды, прайс-чекеры, киоски. Стандартизировал настройку под клиентов и сократил цикл кастомизации.</p>
+            <p class="t-en"><strong>Templates.</strong> 30+ templates and interactive scenarios: menu boards, price checkers, kiosks. Standardised client setup and shortened the customisation cycle.</p>
+            <p class="t-ru"><strong>Обучение.</strong> 40+ онбордингов клиентов, партнёров и сотрудников; база знаний и SOP по CMS — меньше повторных обращений, быстрее обучение новых пользователей.</p>
+            <p class="t-en"><strong>Training.</strong> 40+ onboardings for clients, partners and staff; a CMS knowledge base and SOPs — fewer repeat requests, faster ramp-up for new users.</p>
+            <p class="t-ru"><strong>Сети.</strong> Сопровождал клиентские сети Cubic Vision и Cubic DOOH — 4 000+ устройств или рекламных мест.</p>
+            <p class="t-en"><strong>Networks.</strong> Supported the Cubic Vision and Cubic DOOH client networks — 4,000+ devices or ad slots.</p>
+          </li>
+          <li class="job">
+            <p class="job-dates t-ru">Ноябрь 2023 — июль 2024</p>
+            <p class="job-dates t-en">Nov 2023 — Jul 2024</p>
+            <h3 class="t-ru">Московское академическое художественное училище <span>· Контент-менеджер</span></h3>
+            <h3 class="t-en">Moscow Academic Art College <span>· Content Manager</span></h3>
+            <p class="t-ru">Контент-стратегия сайта и соцсетей: вовлечённость +20%, трафик +15%. Внедрил WEEEK и Jira — согласование сократилось до 2 дней. Организовал 20+ фотосессий, готовил брифы, координировал подрядчиков и привлекал студентов к созданию контента.</p>
+            <p class="t-en">A content strategy for the website and social media: engagement +20%, traffic +15%. Rolled out WEEEK and Jira — approvals shrank to 2 days. Organised 20+ photo shoots, wrote briefs, coordinated contractors and involved students in content creation.</p>
+          </li>
+          <li class="job">
+            <p class="job-dates t-ru">Август 2021 — июнь 2022</p>
+            <p class="job-dates t-en">Aug 2021 — Jun 2022</p>
+            <h3 class="t-ru">Школа № 1679 <span>· Личный помощник руководителя</span></h3>
+            <h3 class="t-en">School No. 1679, Moscow <span>· Assistant to the Principal</span></h3>
+            <p class="t-ru">Курировал проект образовательного кластера и его интеграции с другими учебными заведениями; работал с муниципальными структурами и партнёрами, готовил рабочие встречи. Обучал цифровым инструментам, вёл документооборот. Отчётность в Excel и Google Sheets стала готовиться на 30% быстрее.</p>
+            <p class="t-en">Ran the project to build an education cluster and integrate it with other schools; worked with municipal bodies and partners and prepared working meetings. Trained staff in digital tools and managed documents. Reporting in Excel and Google Sheets became 30% faster to prepare.</p>
+          </li>
+          <li class="job">
+            <p class="job-dates t-ru">Март 2019 — июль 2021</p>
+            <p class="job-dates t-en">Mar 2019 — Jul 2021</p>
+            <h3 class="t-ru">АО «Финпол» при Министерстве финансов <span>· Оператор цифровой печати</span></h3>
+            <h3 class="t-en">Finpol JSC, Ministry of Finance of Russia <span>· Digital Print Operator</span></h3>
+            <p class="t-ru">Оптимизировал подготовку макетов и пресеты печати: брак снизился на 15%, срочные заказы стали выполняться быстрее. Участвовал в оцифровке 700+ книг: настраивал сканирование и вёрстку, писал инструкции и обучал операторов.</p>
+            <p class="t-en">Streamlined layout preparation and print presets: defects fell by 15% and rush orders got faster. Took part in digitising 700+ books: set up scanning and layout, wrote instructions and trained operators.</p>
+          </li>
+          <li class="job">
+            <p class="job-dates t-ru">Образование</p>
+            <p class="job-dates t-en">Education</p>
+            <h3 class="t-ru">РГУФКСМиТ <span>· бакалавр, 2021</span></h3>
+            <h3 class="t-en">Russian State University of Physical Education, Sport, Youth and Tourism <span>· Bachelor’s degree, 2021</span></h3>
+            <p class="t-ru">Инфоурок, 2022: управление финансами компании; государственное и муниципальное управление в образовании; менеджмент в образовании.</p>
+            <p class="t-en">Infourok, 2022: corporate finance management; public administration in education; management in education.</p>
+          </li>
+        </ol>
+
+        <div class="skills">
+          <p class="kicker"><span class="t-ru">навыки</span><span class="t-en">skills</span></p>
+          <p class="t-ru">Русский — родной, английский — B2.</p>
+          <p class="t-en">Russian — native, English — B2 (upper intermediate).</p>
+          <p class="t-ru"><strong>Проекты.</strong> Координация команд и стейкхолдеров, пилоты и риски, presale, демонстрации и PoC, онбординг, базы знаний, техническая документация.</p>
+          <p class="t-en"><strong>Projects.</strong> Coordinating teams and stakeholders, pilots and risks, presale, demos and PoCs, onboarding, knowledge bases, technical documentation.</p>
+          <p class="t-ru"><strong>Продукт и MVP.</strong> Требования, user stories, критерии приёмки, backlog, User Flow, UX/UI, конкурентный анализ и gap-анализ, прототипы с ИИ.</p>
+          <p class="t-en"><strong>Product and MVP.</strong> Requirements, user stories, acceptance criteria, backlog, user flows, UX/UI, competitive and gap analysis, AI-assisted prototypes.</p>
+          <p><strong class="t-ru">Инструменты.</strong><strong class="t-en">Tools.</strong> Jira, Confluence, YouTrack, Notion · Excel, Google Sheets · Figma, Miro · Postman, REST API, JSON/CSV · GitHub, Vercel, Docusaurus · Codex, Claude, Cursor</p>
         </div>
       </div>
     </section>
 
     <section class="contact" id="contact" aria-labelledby="contact-title">
       <div class="wrap">
-        <p class="kicker">связь</p>
-        <h2 id="contact-title">Контакты</h2>
-        <p class="lede">Если есть задача, напишите. Этот ящик ещё не подключён — оставляю его как будущий адрес. <span class="ph">примерный текст</span></p>
-        <p class="mail">
-          <a href="mailto:hello@flowmaster-lab.com">hello@flowmaster-lab.com</a>
-          <span class="ph">будущий адрес</span>
-        </p>
+        <p class="kicker"><span class="t-ru">связь</span><span class="t-en">contact</span></p>
+        <h2 id="contact-title"><span class="t-ru">Обсудим проект или вакансию?</span><span class="t-en">Let’s talk about a project or a role</span></h2>
+        <p class="lede t-ru">Москва, полная занятость, гибрид или офис. Командировки — да, переезд — нет.</p>
+        <p class="lede t-en">Moscow-based, full time, hybrid or on-site. Open to business travel, not to relocation.</p>
+        <p class="mail"><a href="https://t.me/FLOWMA">Telegram · @FLOWMA</a></p>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
     <div class="wrap footer-grid">
-      <p>© <span id="year">2026</span> Фрэнки · Flowmaster Lab</p>
-      <p>Тексты и проекты на странице — заглушки, их заменим на живые.</p>
+      <p>© <span id="year">2026</span> <span class="t-ru">Михаил Бровкин</span><span class="t-en">Mikhail Brovkin</span> · flowmaster-lab.com</p>
     </div>
   </footer>
 
