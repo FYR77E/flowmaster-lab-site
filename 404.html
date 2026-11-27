@@ -9,9 +9,8 @@
   <style>
     @font-face{font-family:Inter;src:url("__SITE_BASE__fonts/inter-cyrillic.woff2") format("woff2");font-weight:100 900;font-style:normal;font-display:swap;unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
     @font-face{font-family:Inter;src:url("__SITE_BASE__fonts/inter-latin.woff2") format("woff2");font-weight:100 900;font-style:normal;font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC}
-    :root{--bg:#f5f3ee;--ink:#1d1c19;--mute:#5a564e;--accent:#b42318}
-    @media (prefers-color-scheme:dark){:root{--bg:#11110f;--ink:#f2efe8;--mute:#b7b3a8;--accent:#f07a6a}}
-    html,body{background:var(--bg);color:var(--ink);margin:0;min-height:100vh;font-family:Inter,Helvetica,Arial,sans-serif}
+    :root{--bg:#0b0708;--ink:#f4eee8;--mute:rgba(244,238,232,.72);--accent:#ffb4a8;color-scheme:dark}
+    html,body{background:radial-gradient(120% 80% at 15% 0%,#3e0914 0%,rgba(11,7,8,0) 60%),var(--bg);color:var(--ink);margin:0;min-height:100vh;font-family:Inter,Helvetica,Arial,sans-serif}
     main{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:24px 28px;max-width:40rem}
     p.kicker{font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin:0 0 1rem}
     h1{font-weight:600;font-size:clamp(2.4rem,8vw,4.8rem);letter-spacing:-0.045em;line-height:1.05;margin:0}
