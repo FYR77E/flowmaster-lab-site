@@ -49,6 +49,9 @@ function setLang(lang) {
       ? (open ? "Close menu" : "Open menu")
       : (open ? "Закрыть меню" : "Открыть меню"));
   });
+  document.querySelectorAll("[data-alt-ru]").forEach((img) => {
+    img.alt = next === "en" ? (img.dataset.altEn || "") : (img.dataset.altRu || "");
+  });
   refreshProcessLabel();
 }
 document.querySelectorAll(".lang-btn").forEach((btn) => {

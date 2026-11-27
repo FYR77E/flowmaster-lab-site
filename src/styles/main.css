@@ -530,38 +530,43 @@ body.nav-open .nav-toggle-bars::after { top: 0; transform: rotate(-45deg); }
 }
 .case-visual {
   position: relative;
-  min-height: clamp(18rem, 42vh, 28rem);
+  aspect-ratio: 5 / 4;
   border-radius: 1.5rem;
   overflow: hidden;
-  background:
-    radial-gradient(120% 80% at 20% 10%, color-mix(in srgb, var(--spot, #c9a27a) 28%, transparent), transparent 55%),
-    radial-gradient(90% 70% at 90% 90%, color-mix(in srgb, var(--spot-2, #4a5a4a) 22%, transparent), transparent 50%),
-    var(--dark-2);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 1.5rem 1.6rem;
+  background: var(--dark-2);
   isolation: isolate;
 }
-.case:nth-child(1) { --spot: #d9b48a; --spot-2: #3d4c5c; }
-.case:nth-child(2) { --spot: #8fb3a0; --spot-2: #5a3d2c; }
-.case:nth-child(3) { --spot: #8aa0d8; --spot-2: #4a3d5c; }
-.case:nth-child(4) { --spot: #d9c56a; --spot-2: #3d4a3c; }
-.case:nth-child(5) { --spot: #e0a0b0; --spot-2: #3a3d4a; }
-.case:nth-child(6) { --spot: #9ad0d4; --spot-2: #4a3a2c; }
-.case-num {
-  font-weight: 600;
-  font-size: clamp(4.5rem, 12vw, 8rem);
-  letter-spacing: -0.06em;
-  line-height: 0.85;
-  color: color-mix(in srgb, var(--cream) 88%, transparent);
+.case-visual picture,
+.case-visual .case-art {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
-.case-mark {
-  font-size: 0.85rem;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--dark-mute);
+.case-visual img,
+.case-visual .case-art,
+.case-visual svg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.case-visual img,
+.case-visual .case-art {
+  transition: transform 0.9s var(--ease);
+  transform-origin: center;
+}
+.case-link a,
+.logo,
+.nav a,
+.mail a,
+.lang-btn {
+  transition: opacity 0.25s var(--ease), border-bottom-color 0.25s var(--ease), border-color 0.25s var(--ease);
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .case:hover .case-visual img,
+  .case:hover .case-visual .case-art {
+    transform: scale(1.035);
+  }
 }
 .case-body { min-width: 0; }
 .case-body h3 {
@@ -609,13 +614,7 @@ body.nav-open .nav-toggle-bars::after { top: 0; transform: rotate(-45deg); }
     grid-template-columns: 1fr;
     gap: 1.25rem;
   }
-  .case-visual {
-    min-height: 10.5rem;
-    flex-direction: row;
-    align-items: flex-end;
-    padding: 1.1rem 1.2rem;
-  }
-  .case-num { font-size: 3.6rem; }
+  .case-visual { aspect-ratio: 3 / 2; }
 }
 
 /* Approach */
@@ -763,19 +762,72 @@ html:not(.js) .reveal,
   transform: none;
 }
 
-@supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
-    .js:not(.rm) .case-visual .case-num {
-      animation: rise-num linear both;
-      animation-timeline: view();
-      animation-range: entry 0% entry 70%;
-    }
-  }
+/* Schematic motion — final state is the default so no-JS stays complete. */
+.wf-dot { opacity: 0; }
+.wf-route { stroke-dasharray: 2000; stroke-dashoffset: 0; }
+.wf-here circle:first-child,
+.bs-scan,
+.bs-ring,
+.ai-caret,
+.wg-tick,
+.wg-tile,
+.ai-tile {
+  transform-box: fill-box;
+  transform-origin: center;
 }
-@keyframes rise-num {
-  from { transform: translateY(18px); opacity: 0.35; }
-  to { transform: none; opacity: 1; }
+.js:not(.rm) .wf-route { stroke-dashoffset: 2000; }
+.js:not(.rm) .case.is-in .wf-route {
+  animation: draw-route 1.7s var(--ease) forwards;
 }
+.js:not(.rm) .wf-dot {
+  offset-path: path("M1000 1260 V1080 C1000 1000 1000 960 1000 900 C1000 780 1000 730 1120 730 C1280 730 1300 730 1330 620 C1340 560 1330 500 1330 480");
+  offset-rotate: 0deg;
+  offset-distance: 0%;
+}
+.js:not(.rm) .case.is-in .wf-dot {
+  animation: travel 2s var(--ease) 0.15s both;
+}
+.js:not(.rm) .case.is-in .wf-here circle:first-child {
+  animation: pulse-ring 2.6s var(--ease) 1.6s infinite;
+}
+.js:not(.rm) .wg-tile,
+.js:not(.rm) .ai-tile { opacity: 0; }
+.js:not(.rm) .case.is-in .wg-tile,
+.js:not(.rm) .case.is-in .ai-tile {
+  animation: tile-in 0.8s var(--ease) forwards;
+}
+.js:not(.rm) .case.is-in .wg-tile:nth-child(1),
+.js:not(.rm) .case.is-in .ai-tile:nth-child(1) { animation-delay: 0.05s; }
+.js:not(.rm) .case.is-in .wg-tile:nth-child(2),
+.js:not(.rm) .case.is-in .ai-tile:nth-child(2) { animation-delay: 0.12s; }
+.js:not(.rm) .case.is-in .wg-tile:nth-child(3),
+.js:not(.rm) .case.is-in .ai-tile:nth-child(3) { animation-delay: 0.19s; }
+.js:not(.rm) .case.is-in .wg-tile:nth-child(4) { animation-delay: 0.26s; }
+.js:not(.rm) .case.is-in .wg-tile:nth-child(5) { animation-delay: 0.33s; }
+.js:not(.rm) .case.is-in .wg-tile:nth-child(6) { animation-delay: 0.4s; }
+.js:not(.rm) .case.is-in .bs-scan {
+  animation: scan-move 3.8s ease-in-out infinite;
+}
+.js:not(.rm) .case.is-in .ai-caret {
+  animation: blink 1.15s steps(1) infinite;
+}
+@keyframes draw-route { to { stroke-dashoffset: 0; } }
+@keyframes travel {
+  0% { offset-distance: 0%; opacity: 1; }
+  85% { opacity: 1; }
+  100% { offset-distance: 100%; opacity: 0; }
+}
+@keyframes pulse-ring {
+  50% { transform: scale(1.7); opacity: 0; }
+}
+@keyframes tile-in {
+  to { opacity: 1; }
+}
+@keyframes scan-move {
+  0%, 100% { transform: translateY(-120px); opacity: 0.15; }
+  50% { transform: translateY(200px); opacity: 0.85; }
+}
+@keyframes blink { 50% { opacity: 0; } }
 
 @media (max-width: 360px) {
   .hero { padding: 1.05rem 0 1.1rem; }

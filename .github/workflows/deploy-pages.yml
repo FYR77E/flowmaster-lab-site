@@ -5,6 +5,10 @@ on:
     branches: [main]
   workflow_dispatch:
 
+# Root path for the custom domain flowmaster-lab.com.
+env:
+  SITE_BASE: /
+
 permissions:
   contents: read
   pages: write
@@ -26,6 +30,8 @@ jobs:
       - run: npm ci
       - run: python3 scripts/decode-assets.py
       - run: npm run build
+        env:
+          SITE_BASE: ${{ env.SITE_BASE }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
