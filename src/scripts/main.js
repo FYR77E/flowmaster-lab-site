@@ -1,36 +1,11 @@
 const root = document.documentElement;
 const reduce = root.classList.contains("rm");
+const noSda = root.classList.contains("nosda");
 
 const year = document.getElementById("year");
 if (year) year.textContent = String(new Date().getFullYear());
 
-const header = document.getElementById("header");
-const darkSections = document.querySelectorAll(".projects");
-
-function updateHeader() {
-  if (!header) return;
-  const y = header.getBoundingClientRect().bottom + 16;
-  let dark = false;
-  darkSections.forEach((s) => {
-    const r = s.getBoundingClientRect();
-    if (r.top < y && r.bottom > y) dark = true;
-  });
-  header.classList.toggle("is-dark", dark);
-}
-window.addEventListener("scroll", updateHeader, { passive: true });
-window.addEventListener("resize", updateHeader);
-updateHeader();
-
-const progress = document.getElementById("scroll-progress");
-function updateProgress() {
-  if (!progress) return;
-  const max = document.documentElement.scrollHeight - window.innerHeight;
-  const p = max > 0 ? Math.min(1, window.scrollY / max) : 0;
-  progress.style.width = `${p * 100}%`;
-}
-window.addEventListener("scroll", updateProgress, { passive: true });
-updateProgress();
-
+/* ---------- language ---------- */
 function currentLang() {
   return root.lang === "en" ? "en" : "ru";
 }
@@ -49,15 +24,12 @@ function setLang(lang) {
       ? (open ? "Close menu" : "Open menu")
       : (open ? "Закрыть меню" : "Открыть меню"));
   });
-  document.querySelectorAll("[data-alt-ru]").forEach((img) => {
-    img.alt = next === "en" ? (img.dataset.altEn || "") : (img.dataset.altRu || "");
-  });
-  refreshProcessLabel();
 }
 document.querySelectorAll(".lang-btn").forEach((btn) => {
   btn.addEventListener("click", () => setLang(btn.dataset.lang));
 });
 
+/* ---------- mobile menu ---------- */
 const navToggle = document.querySelector(".nav-toggle");
 const nav = document.getElementById("site-nav");
 function setNav(open) {
@@ -77,71 +49,84 @@ document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") setNav(false);
 });
 window.addEventListener("resize", () => {
-  if (window.innerWidth >= 880) setNav(false);
+  if (window.innerWidth > 880) setNav(false);
 });
-
-const STAGES = {
-  ru: [
-    "Требования — собираю и оцениваю реализуемость.",
-    "Прототип — собираю с помощью ИИ и проверяю сценарии.",
-    "Ревью — один делает, другой проверяет.",
-    "Пилот — настраиваю стенды и сопровождаю запуск.",
-  ],
-  en: [
-    "Requirements — I gather them and assess feasibility.",
-    "Prototype — I build it with AI tools and test the scenarios.",
-    "Review — one builds, another reviews.",
-    "Pilot — I set up test environments and run the rollout.",
-  ],
-};
-const processEl = document.getElementById("process-line");
-let processTimer = 0;
-let processIdx = 0;
-
-function refreshProcessLabel() {
-  const el = document.getElementById("process-line");
-  if (!el || typeof processIdx === "undefined") return;
-  const list = STAGES[currentLang()];
-  el.innerHTML = `<b>${list[processIdx % list.length]}</b>`;
-}
-function cycleProcess() {
-  if (reduce || !document.getElementById("process-line")) {
-    processIdx = 0;
-    refreshProcessLabel();
-    return;
-  }
-  processIdx = (processIdx + 1) % STAGES.ru.length;
-  refreshProcessLabel();
-}
-function startProcess() {
-  clearInterval(processTimer);
-  processIdx = 0;
-  refreshProcessLabel();
-  if (reduce) return;
-  processTimer = setInterval(cycleProcess, 2800);
-}
-function stopProcess() {
-  clearInterval(processTimer);
-}
 
 setLang(currentLang());
-if (document.getElementById("process-line")) startProcess();
 
-if (!reduce && "IntersectionObserver" in window) {
-  const io = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) e.target.classList.add("is-in");
-      });
-    },
-    { threshold: 0.14, rootMargin: "0px 0px -8% 0px" }
-  );
-  document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
-} else {
-  document.querySelectorAll(".reveal").forEach((el) => el.classList.add("is-in"));
-}
-
-document.addEventListener("visibilitychange", () => {
-  if (document.hidden) stopProcess();
-  else startProcess();
+/* ---------- manifesto: split into words that light up on scroll ---------- */
+const wordSets = [];
+document.querySelectorAll("[data-words]").forEach((p) => {
+  const words = p.textContent.trim().split(/\s+/);
+  const n = words.length;
+  p.textContent = "";
+  const spans = words.map((t, k) => {
+    const s = 8 + (78 * k) / n;
+    const e = s + 78 / n + 3;
+    const span = document.createElement("span");
+    span.className = "w";
+    span.style.setProperty("--s", `${s.toFixed(1)}%`);
+    span.style.setProperty("--e", `${e.toFixed(1)}%`);
+    span.dataset.at = String(s / 100);
+    span.textContent = `${t} `;
+    p.appendChild(span);
+    return span;
+  });
+  wordSets.push(spans);
 });
+
+/* ---------- fallback for browsers without scroll-driven animations ---------- */
+if (reduce) {
+  document.querySelectorAll(".w").forEach((w) => w.classList.add("on"));
+} else if (noSda) {
+  if ("IntersectionObserver" in window) {
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add("is-in");
+            io.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
+    );
+    document.querySelectorAll(".rv, .zm").forEach((el) => io.observe(el));
+  } else {
+    document.querySelectorAll(".rv, .zm").forEach((el) => el.classList.add("is-in"));
+  }
+
+  const manifest = document.querySelector(".manifest");
+  const track = document.getElementById("track");
+  const trackLine = track?.querySelector(".track-line i");
+  let ticking = false;
+
+  const update = () => {
+    ticking = false;
+    const vh = window.innerHeight;
+    if (manifest) {
+      const r = manifest.getBoundingClientRect();
+      const span = r.height - vh;
+      const p = span > 0 ? Math.min(1, Math.max(0, -r.top / span)) : 1;
+      wordSets.forEach((spans) => {
+        spans.forEach((w) => w.classList.toggle("on", p >= Number(w.dataset.at)));
+      });
+    }
+    if (track && trackLine) {
+      const r = track.getBoundingClientRect();
+      const total = r.height + vh;
+      const p = Math.min(1, Math.max(0, (vh - r.top) / total));
+      const scaled = Math.min(1, Math.max(0, (p - 0.1) / 0.6));
+      trackLine.style.setProperty("--p", scaled.toFixed(3));
+    }
+  };
+  const onScroll = () => {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(update);
+    }
+  };
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll);
+  update();
+}
