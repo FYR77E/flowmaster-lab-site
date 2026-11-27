@@ -57,7 +57,7 @@ setLang(currentLang());
 /* ---------- manifesto: split into words that light up on scroll ---------- */
 const wordSets = [];
 document.querySelectorAll("[data-words]").forEach((p) => {
-  const words = p.textContent.trim().split(/\s+/);
+  const words = p.textContent.trim().split(/[ \t\r\n]+/); // keep non-breaking spaces inside words
   const n = words.length;
   p.textContent = "";
   const spans = words.map((t, k) => {
