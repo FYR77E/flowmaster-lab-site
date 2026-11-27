@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2000 1600" fill="none" aria-hidden="true" focusable="false">
+  <defs>
+    <radialGradient id="wf-g1" cx="22%" cy="12%" r="62%">
+      <stop offset="0%" stop-color="#d9b48a" stop-opacity=".32"/>
+      <stop offset="100%" stop-color="#d9b48a" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="wf-g2" cx="88%" cy="90%" r="55%">
+      <stop offset="0%" stop-color="#3d4c5c" stop-opacity=".45"/>
+      <stop offset="100%" stop-color="#3d4c5c" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="wf-screen" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#16181c"/>
+      <stop offset="100%" stop-color="#0b0c0e"/>
+    </linearGradient>
+    <filter id="wf-glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="8" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="2000" height="1600" fill="#121110"/>
+  <rect width="2000" height="1600" fill="url(#wf-g1)"/>
+  <rect width="2000" height="1600" fill="url(#wf-g2)"/>
+  <!-- kiosk / display -->
+  <rect x="270" y="170" width="1460" height="1140" rx="40" fill="#1c1c1f"/>
+  <rect x="270" y="170" width="1460" height="1140" rx="40" stroke="#3a3a3e" stroke-width="1.5" opacity=".7"/>
+  <rect x="294" y="194" width="1412" height="1092" rx="26" fill="url(#wf-screen)"/>
+  <!-- floor plan -->
+  <g class="wf-plan" stroke="#f4f1ea" stroke-linejoin="round" stroke-linecap="round" fill="none">
+    <!-- outer wall -->
+    <path d="M520 340 H1480 V1180 H1180 V1260 H820 V1180 H520 Z" stroke-opacity=".38" stroke-width="3"/>
+    <!-- atrium -->
+    <rect x="840" y="520" width="320" height="420" rx="10" stroke-opacity=".22" stroke-width="2"/>
+    <!-- rooms left -->
+    <rect x="560" y="380" width="220" height="200" rx="8" stroke-opacity=".2" stroke-width="2"/>
+    <rect x="560" y="620" width="220" height="200" rx="8" stroke-opacity=".2" stroke-width="2"/>
+    <rect x="560" y="860" width="220" height="200" rx="8" stroke-opacity=".2" stroke-width="2"/>
+    <!-- rooms right -->
+    <rect x="1220" y="380" width="220" height="200" rx="8" stroke-opacity=".28" stroke-width="2.2"/>
+    <rect x="1220" y="620" width="220" height="200" rx="8" stroke-opacity=".2" stroke-width="2"/>
+    <rect x="1220" y="860" width="220" height="200" rx="8" stroke-opacity=".2" stroke-width="2"/>
+    <!-- corridor lines -->
+    <path d="M820 380 V1180" stroke-opacity=".12" stroke-width="2"/>
+    <path d="M1180 380 V1180" stroke-opacity=".12" stroke-width="2"/>
+    <!-- stairs in the hall, inside the plan -->
+    <g stroke-opacity=".2" stroke-width="2">
+      <path d="M880 1080 H1120"/>
+      <path d="M890 1096 H1110"/>
+      <path d="M900 1112 H1100"/>
+      <path d="M910 1128 H1090"/>
+      <path d="M920 1144 H1080"/>
+    </g>
+  </g>
+  <!-- route -->
+  <path class="wf-route" d="M1000 1260 V1080 C1000 1000 1000 960 1000 900 C1000 780 1000 730 1120 730 C1280 730 1300 730 1330 620 C1340 560 1330 500 1330 480" stroke="#e8c49a" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" filter="url(#wf-glow)" opacity=".95"/>
+  <circle class="wf-dot" r="6" fill="#f4f1ea" cx="1000" cy="1260"/>
+  <!-- you are here -->
+  <g class="wf-here" transform="translate(1000 1260)">
+    <circle r="16" fill="#e8c49a" opacity=".2"/>
+    <circle r="8" fill="#f4f1ea"/>
+  </g>
+  <!-- destination pin -->
+  <g class="wf-pin" transform="translate(1330 454)">
+    <path d="M0 -28 C12 -28 22 -16 22 -4 C22 10 0 28 0 28 C0 28 -22 10 -22 -4 C-22 -16 -12 -28 0 -28 Z" fill="#e8c49a"/>
+    <circle cy="-8" r="6" fill="#121110"/>
+  </g>
+</svg>

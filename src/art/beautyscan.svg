@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2000 1600" fill="none" aria-hidden="true" focusable="false">
+  <defs>
+    <radialGradient id="bs-g1" cx="50%" cy="20%" r="60%">
+      <stop offset="0%" stop-color="#e0a0b0" stop-opacity=".32"/>
+      <stop offset="100%" stop-color="#e0a0b0" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="bs-g2" cx="80%" cy="90%" r="50%">
+      <stop offset="0%" stop-color="#3a3d4a" stop-opacity=".5"/>
+      <stop offset="100%" stop-color="#3a3d4a" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="bs-glass" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2a2226"/>
+      <stop offset="100%" stop-color="#141216"/>
+    </linearGradient>
+    <radialGradient id="bs-oval" cx="50%" cy="46%" r="50%">
+      <stop offset="0%" stop-color="#f3d4da" stop-opacity=".07"/>
+      <stop offset="100%" stop-color="#f3d4da" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="2000" height="1600" fill="#121110"/>
+  <rect width="2000" height="1600" fill="url(#bs-g1)"/>
+  <rect width="2000" height="1600" fill="url(#bs-g2)"/>
+  <!-- floor shadow -->
+  <ellipse cx="1000" cy="1430" rx="280" ry="28" fill="#000" opacity=".45"/>
+  <!-- stand -->
+  <rect x="940" y="1320" width="120" height="80" rx="8" fill="#2a2a2c"/>
+  <rect x="820" y="1390" width="360" height="18" rx="8" fill="#3a3a3c"/>
+  <!-- kiosk body -->
+  <rect x="700" y="140" width="600" height="1200" rx="40" fill="#1c1a1c"/>
+  <rect x="700" y="140" width="600" height="1200" rx="40" stroke="#4a4044" stroke-width="1.5" opacity=".6"/>
+  <rect x="724" y="164" width="552" height="1152" rx="26" fill="url(#bs-glass)"/>
+  <!-- oval suggestion, no facial features -->
+  <ellipse cx="1000" cy="620" rx="170" ry="230" fill="url(#bs-oval)"/>
+  <ellipse class="bs-ring" cx="1000" cy="620" rx="170" ry="230" stroke="#f3d4da" stroke-opacity=".38" stroke-width="2"/>
+  <ellipse class="bs-ring" cx="1000" cy="620" rx="210" ry="280" stroke="#f3d4da" stroke-opacity=".2" stroke-width="1.5"/>
+  <ellipse class="bs-ring" cx="1000" cy="620" rx="250" ry="330" stroke="#f3d4da" stroke-opacity=".12" stroke-width="1.2"/>
+  <!-- scan line -->
+  <rect class="bs-scan" x="760" y="500" width="480" height="2" rx="1" fill="#f3d4da" opacity=".7"/>
+  <!-- abstract palette, no labels or scores -->
+  <g transform="translate(820 1120)">
+    <circle cx="40" cy="0" r="22" fill="#e7c4c8"/>
+    <circle cx="110" cy="0" r="22" fill="#f0d7c6"/>
+    <circle cx="180" cy="0" r="22" fill="#d9a39a"/>
+    <circle cx="250" cy="0" r="22" fill="#c07a72"/>
+    <circle cx="320" cy="0" r="22" fill="#8a5a62"/>
+  </g>
+</svg>
