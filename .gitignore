@@ -4,3 +4,9 @@ node_modules/
 shots/
 dist/
 scripts/lighthouse/
+# decoded from public/**/*.b64 by scripts/decode-assets.py
+public/**/*.woff2
+public/**/*.png
+public/**/*.avif
+public/**/*.webp
+public/**/*.pdf

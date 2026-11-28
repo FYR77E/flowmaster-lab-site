@@ -13,13 +13,13 @@
   <meta property="og:title" content="Михаил Бровкин — Product Engineer">
   <meta property="og:description" content="Нахожу бизнес-задачу за запросом клиента, проверяю её прототипом и довожу до продукта.">
   <meta property="og:url" content="https://flowmaster-lab.com/">
-  <meta property="og:image" content="https://flowmaster-lab.com/og.png">
+  <meta property="og:image" content="https://flowmaster-lab.com/og.png?v=2">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Михаил Бровкин — Product Engineer">
   <meta name="twitter:description" content="Нахожу бизнес-задачу за запросом клиента, проверяю её прототипом и довожу до продукта.">
-  <meta name="twitter:image" content="https://flowmaster-lab.com/og.png">
+  <meta name="twitter:image" content="https://flowmaster-lab.com/og.png?v=2">
   <link rel="icon" href="__SITE_BASE__favicon.svg" type="image/svg+xml">
   <link rel="icon" href="__SITE_BASE__favicon-32.png" type="image/png" sizes="32x32">
   <link rel="icon" href="__SITE_BASE__favicon-16.png" type="image/png" sizes="16x16">
@@ -99,7 +99,8 @@
         </p>
         <p class="cta ld" style="--d:.85s">
           <a class="btn" href="https://t.me/FLOWMA">Telegram · @FLOWMA</a>
-          <a class="btn btn-ghost" href="#now"><span class="t-ru">Чем занимаюсь сейчас</span><span class="t-en">What I do now</span> <span class="bob" aria-hidden="true">↓</span></a>
+          <a class="btn btn-ghost" href="__SITE_BASE__cv/mikhail-brovkin-cv.pdf" download><span class="t-ru">Резюме, PDF</span><span class="t-en">CV, PDF</span></a>
+          <a class="link-down" href="#now"><span class="t-ru">Чем занимаюсь сейчас</span><span class="t-en">What I do now</span> <span class="bob" aria-hidden="true">↓</span></a>
         </p>
       </div>
     </section>
@@ -116,8 +117,8 @@
         <div class="glass now-card zm">
           <p class="kicker accent"><i class="pulse" aria-hidden="true"></i><span class="t-ru">Сейчас · Product Engineer · с ноября 2026</span><span class="t-en">Now · Product Engineer · since November 2026</span></p>
           <h2 id="now-title"><span class="t-ru">Развиваю продукт <span class="gt">SmartPlayer</span></span><span class="t-en">Building the <span class="gt">SmartPlayer</span> product</span></h2>
-          <p class="lede t-ru">В ноябре 2026 перешёл из пресейла в продуктовую команду. Работаю вместе с продакт-менеджером: от структуры продукта и анализа рынка до решений, которые уходят в разработку.</p>
-          <p class="lede t-en">In November 2026 I moved from presale to the product team. I work with the product manager on everything from product structure and market analysis to solutions that go into development.</p>
+          <p class="lede t-ru">SmartPlayer — платформа для управления сетями экранов: контент, расписания и устройства в одной CMS. В ноябре 2026 перешёл из пресейла в продуктовую команду. Работаю вместе с продакт-менеджером: от структуры продукта и анализа рынка до решений, которые уходят в разработку.</p>
+          <p class="lede t-en">SmartPlayer is a platform for running screen networks: content, schedules and devices in one CMS. In November 2026 I moved from presale to the product team. I work with the product manager on everything from product structure and market analysis to solutions that go into development.</p>
           <div class="now-grid">
             <div class="rv">
               <h3><span class="t-ru">Структура продукта</span><span class="t-en">Product structure</span></h3>
@@ -364,14 +365,41 @@
     <section class="work" id="work" aria-labelledby="work-title">
       <div class="wrap">
         <h2 id="work-title" class="kicker rv"><span class="t-ru">Избранные проекты</span><span class="t-en">Selected work</span></h2>
+        <div class="cases">
+          <article class="glass case zm">
+            <picture>
+              <source type="image/avif" srcset="__SITE_BASE__visuals/portal-800.avif 800w, __SITE_BASE__visuals/portal-1200.avif 1200w, __SITE_BASE__visuals/portal-1600.avif 1600w" sizes="(max-width: 880px) 92vw, 600px">
+              <img src="__SITE_BASE__visuals/portal-1200.webp" srcset="__SITE_BASE__visuals/portal-800.webp 800w, __SITE_BASE__visuals/portal-1200.webp 1200w, __SITE_BASE__visuals/portal-1600.webp 1600w" sizes="(max-width: 880px) 92vw, 600px" width="1600" height="1280" loading="lazy" decoding="async" alt="Портал документации SmartPlayer на ноутбуке и телефоне">
+            </picture>
+            <div class="case-body">
+              <p class="case-tag"><span class="t-ru">SmartPlayer · документация</span><span class="t-en">SmartPlayer · documentation</span></p>
+              <h3><span class="t-ru">Портал документации и обучение</span><span class="t-en">Documentation and training portal</span></h3>
+              <p class="t-ru">Одно место с инструкциями для сотрудников и клиентов: руководство, быстрый старт, интерактивное обучение. Собрал на Docusaurus, GitHub и Vercel.</p>
+              <p class="t-en">One place with guides for staff and clients: user guide, quick start, interactive training. Built with Docusaurus, GitHub and Vercel.</p>
+              <p class="case-res"><span class="t-ru">Порталом пользуются сотрудники и клиенты, по нему провёл 70+ обучений.</span><span class="t-en">Used by staff and clients; 70+ trainings run on it.</span></p>
+              <a class="case-link" href="https://smartplayer-portal-v5.vercel.app"><span class="t-ru">Открыть портал</span><span class="t-en">Open the portal</span> ↗</a>
+            </div>
+          </article>
+          <article class="glass case zm">
+            <picture>
+              <source type="image/avif" srcset="__SITE_BASE__visuals/matrix-800.avif 800w, __SITE_BASE__visuals/matrix-1200.avif 1200w, __SITE_BASE__visuals/matrix-1600.avif 1600w" sizes="(max-width: 880px) 92vw, 600px">
+              <img src="__SITE_BASE__visuals/matrix-1200.webp" srcset="__SITE_BASE__visuals/matrix-800.webp 800w, __SITE_BASE__visuals/matrix-1200.webp 1200w, __SITE_BASE__visuals/matrix-1600.webp 1600w" sizes="(max-width: 880px) 92vw, 600px" width="1600" height="1280" loading="lazy" decoding="async" alt="Compatibility Matrix SmartPlayer на мониторе">
+            </picture>
+            <div class="case-body">
+              <p class="case-tag"><span class="t-ru">SmartPlayer · пресейл</span><span class="t-en">SmartPlayer · presale</span></p>
+              <h3>Compatibility Matrix</h3>
+              <p class="t-ru">Интерактивная матрица: что работает на какой платформе. 8 платформ и 120+ функций CMS, рядом сравнение с конкурентами по функциям, интеграциям и лицензированию.</p>
+              <p class="t-en">An interactive matrix of what works on which platform: 8 platforms and 120+ CMS features, next to a competitor comparison on features, integrations and licensing.</p>
+              <p class="case-res"><span class="t-ru">Клиентскую версию используют на демо и при обсуждении пилотов, концепции доработок взяли в спринт.</span><span class="t-en">The client version is used in demos and pilot talks; the improvement concepts went into a sprint.</span></p>
+            </div>
+          </article>
+        </div>
         <ol class="work-list">
-          <li class="rv"><span class="w-n">01</span><span class="w-t"><span class="t-ru">Навигация для Дома правительства</span><span class="t-en">Wayfinding for a government building</span></span><span class="w-r"><span class="t-ru">Маршруты и точки назначения на карте. Проект сдан в срок.</span><span class="t-en">Routes and destinations on the map. Delivered on time.</span></span></li>
-          <li class="rv"><span class="w-n">02</span><span class="w-t"><span class="t-ru">BeautyScan для «Магнита»</span><span class="t-en">BeautyScan for Magnit</span></span><span class="w-r"><span class="t-ru">Веб-решение, дисплеи и ИИ-сценарий. Команда из 7 человек, проект принят клиентом.</span><span class="t-en">Web app, in-store displays and an AI scenario. A team of 7; accepted by the client.</span></span></li>
-          <li class="rv"><span class="w-n">03</span><span class="w-t">Compatibility Matrix</span><span class="w-r"><span class="t-ru">8 платформ и 120+ функций CMS. Используют на демо и при обсуждении пилотов.</span><span class="t-en">8 platforms and 120+ CMS features. Used in demos and pilot discussions.</span></span></li>
-          <li class="rv"><span class="w-n">04</span><span class="w-t"><span class="t-ru">Прототип личного кабинета</span><span class="t-en">Customer dashboard prototype</span></span><span class="w-r"><span class="t-ru">Новая навигация, создание трансляции в четыре шага.</span><span class="t-en">New navigation; creating a broadcast takes four steps.</span></span></li>
-          <li class="rv"><span class="w-n">05</span><span class="w-t"><span class="t-ru">Библиотека виджетов</span><span class="t-en">Widget library</span></span><span class="w-r"><span class="t-ru">20+ виджетов, 4 решения помогли заключить договоры, показ на выставке в Индии.</span><span class="t-en">20+ widgets, 4 solutions that helped close contracts, shown at an exhibition in India.</span></span></li>
-          <li class="rv"><a class="w-link" href="https://smartplayer-portal-v5.vercel.app"><span class="w-n">06</span><span class="w-t"><span class="t-ru">Портал документации</span><span class="t-en">Documentation portal</span></span><span class="w-r"><span class="t-ru">Docusaurus, GitHub, Vercel. Им пользуются сотрудники и клиенты.</span><span class="t-en">Docusaurus, GitHub, Vercel. Used by staff and clients.</span></span><span class="w-arrow" aria-hidden="true">↗</span></a></li>
-          <li class="rv"><span class="w-n">07</span><span class="w-t"><span class="t-ru">Вход для ИИ-агентов в Digital Signage</span><span class="t-en">An AI-agent entry point for Digital Signage</span></span><span class="w-r"><span class="t-ru">Концепт: права открываются ступенями, MCP-инструменты разложены по уровню риска.</span><span class="t-en">Concept: staged permissions, MCP tools ranked by risk.</span></span></li>
+          <li class="rv"><span class="w-n">01</span><span class="w-t"><span class="t-ru">Навигация для Дома правительства</span><span class="t-en">Wayfinding for a government building</span></span><span class="w-r"><span class="t-ru">Маршруты и точки назначения на карте. Проект сдан в срок.</span><span class="t-en">Routes and destinations on the map. Delivered on time.</span></span></li>
+          <li class="rv"><span class="w-n">02</span><span class="w-t"><span class="t-ru">BeautyScan для «Магнита»</span><span class="t-en">BeautyScan for Magnit</span></span><span class="w-r"><span class="t-ru">Веб-решение, дисплеи и ИИ-сценарий. Команда из 7 человек, проект принят клиентом.</span><span class="t-en">Web app, in-store displays and an AI scenario. A team of 7; accepted by the client.</span></span></li>
+          <li class="rv"><span class="w-n">03</span><span class="w-t"><span class="t-ru">Прототип личного кабинета</span><span class="t-en">Customer dashboard prototype</span></span><span class="w-r"><span class="t-ru">Новая навигация, создание трансляции в четыре шага.</span><span class="t-en">New navigation; creating a broadcast takes four steps.</span></span></li>
+          <li class="rv"><span class="w-n">04</span><span class="w-t"><span class="t-ru">Библиотека виджетов</span><span class="t-en">Widget library</span></span><span class="w-r"><span class="t-ru">20+ виджетов, 4 решения помогли заключить договоры, показ на выставке в Индии.</span><span class="t-en">20+ widgets, 4 solutions that helped close contracts, shown at an exhibition in India.</span></span></li>
+          <li class="rv"><span class="w-n">05</span><span class="w-t"><span class="t-ru">Вход для ИИ-агентов в Digital Signage</span><span class="t-en">An AI-agent entry point for Digital Signage</span></span><span class="w-r"><span class="t-ru">Концепт: права открываются ступенями, MCP-инструменты разложены по уровню риска.</span><span class="t-en">Concept: staged permissions, MCP tools ranked by risk.</span></span></li>
         </ol>
       </div>
     </section>
@@ -408,12 +436,18 @@
 
     <section class="contact" id="contact" aria-labelledby="contact-title">
       <div class="wrap">
-        <h2 id="contact-title" class="zm"><span class="t-ru">Обсудим проект <span class="gt">или роль?</span></span><span class="t-en">Let’s talk about <span class="gt">a project or a role.</span></span></h2>
-        <p class="lede rv t-ru">Москва · полная занятость · гибрид или офис · английский B2. Командировки — да, переезд — нет.</p>
-        <p class="lede rv t-en">Moscow · full time · hybrid or on-site · English B2. Open to business travel, not to relocation.</p>
+        <h2 id="contact-title" class="zm"><span class="t-ru">Обсудим проект <span class="gt">или роль?</span></span><span class="t-en">Let’s talk about <span class="gt">a project or a role.</span></span></h2>
+        <p class="lede rv t-ru">Рассматриваю предложения на роли Product Engineer, Product Owner и менеджера продукта.</p>
+        <p class="lede rv t-en">Open to offers for Product Engineer, Product Owner and Product Manager roles.</p>
+        <p class="lede small rv t-ru">Москва · полная занятость · гибрид или офис · английский B2. Командировки — да, переезд — нет.</p>
+        <p class="lede small rv t-en">Moscow · full time · hybrid or on-site · English B2. Open to business travel, not to relocation.</p>
         <p class="cta rv">
-          <a class="btn btn-lg" href="https://t.me/FLOWMA"><span class="t-ru">Написать в Telegram · @FLOWMA</span><span class="t-en">Message on Telegram · @FLOWMA</span></a>
-          <a class="btn btn-ghost btn-lg" href="https://disk.yandex.ru/i/03QTNnp1qbMShw"><span class="t-ru">Рекомендательное письмо ↗</span><span class="t-en">Reference letter ↗</span></a>
+          <a class="btn btn-lg" href="https://t.me/FLOWMA"><span class="t-ru">Написать в Telegram</span><span class="t-en">Message on Telegram</span></a>
+          <a class="btn btn-ghost btn-lg btn-mail" href="mailto:mihail.ibragimovitch@yandex.ru">mihail.ibragimovitch@yandex.ru</a>
+        </p>
+        <p class="links rv">
+          <a href="__SITE_BASE__cv/mikhail-brovkin-cv.pdf" download><span class="t-ru">Резюме, PDF</span><span class="t-en">CV, PDF (in Russian)</span> ↓</a>
+          <a href="https://disk.yandex.ru/i/03QTNnp1qbMShw"><span class="t-ru">Рекомендательное письмо</span><span class="t-en">Reference letter</span> ↗</a>
         </p>
       </div>
     </section>
