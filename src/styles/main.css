@@ -33,6 +33,9 @@ body {
   overflow-x: hidden;
 }
 h1, h2, h3, p, ol, ul { margin: 0; }
+h1, h2, h3, .tagline, .manifest-text, .w-t { text-wrap: balance; }
+p, li, .w-r { text-wrap: pretty; }
+body { overflow-wrap: break-word; }
 ol, ul { padding: 0; list-style: none; }
 a { color: var(--ink); }
 a:hover { color: var(--rose); }
@@ -46,16 +49,27 @@ section[id] { scroll-margin-top: 80px; }
 /* ---------- background: burgundy blobs + film grain ---------- */
 .bg {
   position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none;
+  /* soft wine-magenta glow in the middle of every screen, near-black vignette at the edges */
   background:
-    radial-gradient(120% 80% at 15% 0%, #3e0914 0%, rgba(11, 7, 8, 0) 60%),
-    radial-gradient(90% 70% at 100% 100%, #2c0610 0%, rgba(11, 7, 8, 0) 60%),
-    var(--bg);
+    radial-gradient(75% 60% at 50% 42%, #9c3456 0%, #6e1730 30%, #3b0b17 58%, #17070a 82%, #0b0708 100%);
 }
-.blob { position: absolute; border-radius: 50%; filter: blur(100px); animation: drift 24s ease-in-out infinite alternate; will-change: transform; }
-.blob-1 { width: 720px; height: 720px; left: -12%; top: -18%; background: #7a1426; opacity: .55; }
-.blob-2 { width: 560px; height: 560px; right: -8%; top: 28%; background: #a3213c; opacity: .32; animation-duration: 30s; animation-delay: -8s; }
-.blob-3 { width: 800px; height: 800px; left: 25%; bottom: -45%; background: #4a0a18; opacity: .6; animation-duration: 36s; animation-delay: -15s; }
-.grain { position: absolute; inset: 0; opacity: .16; mix-blend-mode: overlay; }
+.blob { position: absolute; border-radius: 50%; filter: blur(110px); animation: drift 26s ease-in-out infinite alternate; will-change: transform; }
+.blob-1 { width: 640px; height: 640px; left: 8%; top: 4%; background: #a8384f; opacity: .26; }
+.blob-2 { width: 520px; height: 520px; right: 2%; top: 34%; background: #7a1a2e; opacity: .3; animation-duration: 32s; animation-delay: -8s; }
+.blob-3 { width: 760px; height: 760px; left: 20%; bottom: -50%; background: #0b0708; opacity: .55; animation-duration: 38s; animation-delay: -15s; }
+/* fine film grain: a small tiled noise texture, cheap to render while scrolling */
+.grain {
+  position: absolute; inset: -50%;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.1' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1.4 -0.45'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 220px 220px;
+  opacity: .2;
+  mix-blend-mode: soft-light;
+}
+.grain::after {
+  content: ""; position: absolute; inset: 0;
+  background-image: inherit; background-size: 160px 160px; background-position: 37px 91px;
+  filter: invert(1); opacity: .7;
+}
 @media (max-width: 720px) {
   .blob-1 { width: 420px; height: 420px; }
   .blob-2 { width: 340px; height: 340px; }
@@ -64,7 +78,7 @@ section[id] { scroll-margin-top: 80px; }
 
 /* ---------- shared ---------- */
 .gt {
-  background: linear-gradient(92deg, #f4eee8 0%, #ffb4a8 50%, #e0506a 100%);
+  background: linear-gradient(92deg, #f4eee8 0%, #ffc2b6 50%, #ff8fa6 100%);
   -webkit-background-clip: text; background-clip: text; color: transparent;
 }
 .kicker { font-size: 13px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; color: var(--faint); }
@@ -111,7 +125,7 @@ section[id] { scroll-margin-top: 80px; }
   border-bottom: 1px solid rgba(255, 255, 255, .06);
 }
 .header-in { max-width: 1280px; margin: 0 auto; padding: 12px var(--pad); display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-.logo { font-family: var(--display); font-weight: 700; font-size: 15px; text-decoration: none; }
+.logo { font-family: var(--display); font-weight: 700; font-size: 15px; text-decoration: none; white-space: nowrap; }
 .nav { display: flex; gap: 28px; font-size: 14px; }
 .nav a { color: rgba(244, 238, 232, .7); text-decoration: none; }
 .nav a:hover { color: var(--ink); }
@@ -170,7 +184,7 @@ section[id] { scroll-margin-top: 80px; }
 .now-card { padding: 56px; border-color: rgba(255, 180, 168, .22); }
 .now-card h2 { margin-top: 20px; font-family: var(--display); font-weight: 800; font-size: clamp(36px, 4.8vw, 72px); line-height: 1; letter-spacing: -.045em; }
 .now-card .lede { margin-top: 20px; max-width: 760px; }
-.now-grid { margin-top: 44px; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 28px; }
+.now-grid { margin-top: 44px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 28px 32px; }
 .now-grid h3 { font-family: var(--display); font-weight: 700; font-size: 20px; }
 .now-grid p { margin-top: 10px; font-size: 15px; color: rgba(244, 238, 232, .7); }
 @media (max-width: 720px) { .now-card { padding: 28px; } }
@@ -181,8 +195,8 @@ section[id] { scroll-margin-top: 80px; }
 .card { padding: 36px; }
 .card-wide { grid-column: span 2; }
 .card-n { font-size: 13px; font-weight: 600; color: var(--rose); text-transform: uppercase; }
-.card h3 { margin-top: 16px; font-family: var(--display); font-weight: 700; font-size: 28px; line-height: 1.15; letter-spacing: -.03em; }
-.card-wide h3 { font-size: 34px; }
+.card h3 { margin-top: 16px; font-family: var(--display); font-weight: 700; font-size: clamp(22px, 2.3vw, 28px); line-height: 1.15; letter-spacing: -.03em; }
+.card-wide h3 { font-size: clamp(24px, 2.8vw, 34px); }
 .card p:not(.card-n) { margin-top: 14px; max-width: 680px; font-size: 16px; color: var(--mute); }
 .card-wide p:not(.card-n) { font-size: 17px; }
 @media (max-width: 1000px) { .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
@@ -200,7 +214,7 @@ section[id] { scroll-margin-top: 80px; }
 .big-num p:not(.num-xl) { margin: 20px auto 0; max-width: 600px; font-size: 20px; line-height: 1.45; color: rgba(244, 238, 232, .75); }
 .num-grid { margin-top: 120px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 56px 48px; }
 .num-grid strong { display: block; font-family: var(--display); font-weight: 800; font-size: clamp(52px, 5.6vw, 88px); line-height: 1; letter-spacing: -.05em; }
-.num-grid span { display: block; margin-top: 14px; font-size: 17px; line-height: 1.5; color: var(--mute); }
+.num-grid li > span { display: block; margin-top: 14px; font-size: 17px; line-height: 1.5; color: var(--mute); }
 @media (max-width: 720px) { .num-grid { margin-top: 80px; grid-template-columns: minmax(0, 1fr); gap: 44px; } }
 
 /* ---------- how ---------- */
@@ -239,6 +253,9 @@ section[id] { scroll-margin-top: 80px; }
 .role.lvl-2 h3 { font-size: 28px; }
 .org { margin-top: 6px; font-size: 16px; color: var(--rose); }
 .role p:not(.when):not(.org) { margin-top: 10px; max-width: 680px; font-size: 16px; color: var(--mute); }
+.bul { margin-top: 14px; max-width: 720px; display: flex; flex-direction: column; gap: 10px; }
+.bul li { position: relative; padding-left: 20px; font-size: 16px; line-height: 1.55; color: var(--mute); }
+.bul li::before { content: ""; position: absolute; left: 2px; top: .68em; width: 6px; height: 6px; border-radius: 50%; background: rgba(255, 180, 168, .55); }
 @media (max-width: 720px) {
   .track { padding-left: 36px; }
   .role::before { left: -36px; }
@@ -315,3 +332,27 @@ html.js.nosda:not(.rm) .track-line i { transform: scaleY(var(--p, 0)); }
 
 /* reduced motion: everything static and visible */
 html.rm *, html.rm *::before, html.rm *::after { animation: none !important; transition: none !important; }
+
+/* ---------- small phones: Unbounded is wide, scale display type down ---------- */
+@media (max-width: 480px) {
+  .logo { font-size: 14px; }
+  .chip { font-size: 12px; }
+  .hero-name { font-size: clamp(40px, 13vw, 56px); }
+  .tagline { font-size: clamp(21px, 6.4vw, 26px); }
+  .manifest-text { font-size: clamp(24px, 7.4vw, 30px); }
+  .now-card h2 { font-size: clamp(26px, 8.4vw, 34px); }
+  .h-xl, .how-head h2 { font-size: clamp(28px, 9vw, 38px); }
+  .card h3, .card-wide h3, .step h3 { font-size: 21px; }
+  .now-grid h3 { font-size: 18px; }
+  .num-xl { font-size: clamp(56px, 19vw, 80px); }
+  .num-grid strong { font-size: clamp(40px, 13vw, 52px); }
+  .role.lvl-1 h3 { font-size: 24px; }
+  .role.lvl-2 h3 { font-size: 20px; }
+  .role h3 { font-size: 18px; }
+  .w-t { font-size: 20px; }
+  .contact h2 { font-size: clamp(34px, 11vw, 48px); }
+  .marquee-row span { font-size: 22px; padding: 0 18px; }
+  .now-card { padding: 24px 22px; }
+  .now-card .lede, .lede { font-size: 16px; }
+  .btn-lg { font-size: 15px; padding: 0 20px; }
+}
